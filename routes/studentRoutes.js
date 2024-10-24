@@ -7,11 +7,11 @@ import {
   getExamTimetable,
   getExamGatePass,
 } from '../controllers/studentController.js';
-import { authenticateStudent } from '../middleware/auth.js';
+import { authenticateUser } from '../middleware/auth.js';
 
 const router = express.Router();
 
-router.use(authenticateStudent);
+router.use(authenticateUser);
 
 router.put('/profile', updateProfile);
 router.post('/apply-leave', applyLeave);

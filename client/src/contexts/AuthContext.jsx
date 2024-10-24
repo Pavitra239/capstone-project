@@ -7,26 +7,37 @@ export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      api.defaults.headers.common['x-auth-token'] = token;
-      api
-        .get('/auth/me')
-        .then((res) => setUser(res.data))
-        .catch((err) => {
+    const fetchUser = async () => {
+      const token = localStorage.getItem('token');
+      if (token) {
+        api.defaults.headers.common['x-auth-token'] = token;
+        try {
+          const res = await api.get('/auth/me');
+          console.log(res);
+
+          setUser(res.data);
+        } catch (err) {
           console.error(err);
           localStorage.removeItem('token');
-        });
-    }
+        }
+      }
+      setLoading(false);
+    };
+
+    fetchUser();
   }, []);
 
-  const login = async (credentials) => {
-    const res = await api.post('/auth/login', credentials);
+  const login = async (credentials, userType) => {
+    const res = await api.post(`/auth/${userType}/login`, credentials);
+    console.log(res);
+
     localStorage.setItem('token', res.data.token);
     api.defaults.headers.common['x-auth-token'] = res.data.token;
     setUser(res.data.user);
+    return res.data.user;
   };
 
   const logout = () => {
@@ -34,6 +45,10 @@ export const AuthProvider = ({ children }) => {
     delete api.defaults.headers.common['x-auth-token'];
     setUser(null);
   };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <AuthContext.Provider value={{ user, login, logout }}>

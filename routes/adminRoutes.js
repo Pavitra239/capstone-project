@@ -8,11 +8,11 @@ import {
   resetAdminPassword,
   getStudents,
 } from '../controllers/adminController.js';
-import { authenticateAdmin } from '../middleware/auth.js';
+import { authenticateUser } from '../middleware/auth.js';
 
 const router = express.Router();
 
-router.use(authenticateAdmin);
+router.use(authenticateUser);
 
 router.post('/enroll', enrollStudent);
 router.post('/send-emails', sendEmails);
