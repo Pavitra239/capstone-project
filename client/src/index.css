@@ -1,0 +1,84 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Custom styles */
+body {
+  @apply bg-gray-100 text-gray-900;
+}
+
+.btn {
+  @apply px-4 py-2 rounded-md font-medium transition duration-150 ease-in-out;
+}
+
+.btn-primary {
+  @apply bg-blue-500 text-white hover:bg-blue-600;
+}
+
+.btn-secondary {
+  @apply bg-gray-200 text-gray-800 hover:bg-gray-300;
+}
+
+.input {
+  @apply w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500;
+}
+
+.label {
+  @apply block text-sm font-medium text-gray-700 mb-1;
+}
+
+.card {
+  @apply bg-white shadow-md rounded-lg p-6;
+}
+
+.sidebar {
+  @apply bg-white shadow-md w-64 h-screen fixed left-0 top-0;
+}
+
+.sidebar-link {
+  @apply block py-2 px-4 text-gray-700 hover:bg-gray-200;
+}
+
+.main-content {
+  @apply ml-64 p-8;
+}
+
+.table {
+  @apply w-full border-collapse;
+}
+
+.table th,
+.table td {
+  @apply border p-2;
+}
+
+.table th {
+  @apply bg-gray-100 font-semibold text-left;
+}
+
+.form-group {
+  @apply mb-4;
+}
+
+.alert {
+  @apply p-4 mb-4 rounded-md;
+}
+
+.alert-success {
+  @apply bg-green-100 text-green-700;
+}
+
+.alert-error {
+  @apply bg-red-100 text-red-700;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .sidebar {
+    @apply hidden;
+  }
+
+  .main-content {
+    @apply ml-0;
+  }
+}
