@@ -6,8 +6,17 @@ import { sendEmail } from '../utils/email.js';
 
 export const enrollStudent = async (req, res) => {
   try {
-    const { name, email, registrationNumber } = req.body;
-    const student = new Student({ name, email, registrationNumber });
+    const { name, email } = req.body;
+    const prefix = 'IT2024';
+    const count = await Student.countDocuments();
+    if (!count) throw new Error('Something went wrong!');
+    const newId = prefix + (count + 1).toString().padStart(3, '0');
+    const student = new Student({ name, email, newId });
+    await sendEmail(
+      email,
+      'registration number',
+      `Your registration number is: ${newId}`
+    );
     await student.save();
     res.status(201).json({ message: 'Student enrolled successfully', student });
   } catch (error) {

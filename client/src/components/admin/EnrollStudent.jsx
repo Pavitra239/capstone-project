@@ -56,7 +56,7 @@ export default function EnrollStudent() {
             className="w-full px-3 py-2 border rounded-md"
           />
         </div>
-        <div>
+        {/* <div>
           <label htmlFor="registrationNumber" className="block mb-1">
             Registration Number
           </label>
@@ -69,7 +69,7 @@ export default function EnrollStudent() {
             required
             className="w-full px-3 py-2 border rounded-md"
           />
-        </div>
+        </div> */}
         <button
           type="submit"
           className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600"
