@@ -13,8 +13,8 @@ const createAdmin = async () => {
   try {
     const adminData = {
       name: 'Admin User',
-      email: 'admin@example.com',
-      password: 'adminpassword123',
+      email: 'admin@gmail.com',
+      password: 'secret1234',
     };
 
     const admin = new Admin(adminData);

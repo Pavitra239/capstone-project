@@ -17,6 +17,8 @@ export default function Login() {
     e.preventDefault();
     try {
       const user = await login(credentials, userType);
+      console.log(user);
+
       navigate(user.role === 'admin' ? '/admin' : '/student');
     } catch (err) {
       setError('Invalid credentials');

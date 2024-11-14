@@ -31,6 +31,8 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const login = async (credentials, userType) => {
+    console.log(userType);
+
     const res = await api.post(`/auth/${userType}/login`, credentials);
     console.log(res);
 

@@ -66,8 +66,8 @@ export const registerStudent = async (req, res) => {
 export const loginAdmin = async (req, res) => {
   try {
     const { email, password } = req.body;
+
     const admin = await Admin.findOne({ email });
-    console.log(admin);
 
     if (!admin) {
       return res.status(400).json({ message: 'Invalid credentials' });
@@ -85,7 +85,7 @@ export const loginAdmin = async (req, res) => {
     );
     res.status(200).json({
       token,
-      admin: {
+      user: {
         id: admin._id,
         name: admin.name,
         email: admin.email,
